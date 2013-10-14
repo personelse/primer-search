@@ -1,22 +1,221 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
+<html class="no-js">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Primer Search</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="/styles/normalize.css">
+    <link rel="stylesheet" href="/styles/jquery.modal.css">
     <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/form.css">
 </head>
 <body>
-    <h1>Primer Search</h1>
+    <!-- <h1>Primer Search</h1> -->
+<div class="wrapper">
+    <div class="form">
+            <div class="species-table">
+                <div class="row header">
+                    <span class="sequence">Sequence</span>
+                    <span class="name">Name</span>
+                    <span class="status">Status</span>
+                    <span class=""></span>
+                </div>
+                <div class="species-list">
+                    <div class="row">
+                        <input class="sequence" type="text" name="sequence" />
+                        <input class="name" type="text" name="name" value="canis lupus" />
+                        <span class="status"></span>
+                        <button class="remove-species" type="button">x</button>
+                    </div>
+                    <div class="row">
+                        <input class="sequence" type="text" name="sequence" />
+                        <input class="name" type="text" name="name" value="canis latrans" />
+                        <span class="status"></span>
+                        <button class="remove-species" type="button">x</button>
+                    </div>
+                    <div class="row">
+                        <input class="sequence" type="text" name="sequence" />
+                        <input class="name" type="text" name="name" value="castor canadensis" />
+                        <span class="status"></span>
+                        <button class="remove-species" type="button">x</button>
+                    </div>
+                    <div class="row">
+                        <input class="sequence" type="text" name="sequence" />
+                        <input class="name" type="text" name="name" value="alces alces" />
+                        <span class="status"></span>
+                        <button class="remove-species" type="button">x</button>
+                    </div>
+                    <div class="row">
+                        <input class="sequence" type="text" name="sequence" />
+                        <input class="name" type="text" name="name" value="rangifer tarandus" />
+                        <span class="status"></span>
+                        <button class="remove-species" type="button">x</button>
+                    </div>
+                    <div class="row">
+                        <input class="sequence" type="text" name="sequence" />
+                        <input class="name" type="text" name="name" value="odocoileus virginianus" />
+                        <span class="status"></span>
+                        <button class="remove-species" type="button">x</button>
+                    </div>
+                    <div class="row">
+                        <input class="sequence" type="text" name="sequence" />
+                        <input class="name" type="text" name="name" value="odocoileus hemionus" />
+                        <span class="status"></span>
+                        <button class="remove-species" type="button">x</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="add_species" type="button">Add Species</button>
+            
+            
+        <!-- <div class="species">
+            
+            <table>
+                <thead>
+                    <tr>
+                        <td>Sequence</td>
+                        <td>Name</td>
+                        <td>Status</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody class="species-list removable">
+                    <tr class="species-row">
+                        <td><input type="text" name="sequence" /></td>
+                        <td><input type="text" name="label" value="canis lupus"/></td>
+                        <td><span class="status"></span></td>
+                        <td><button class="remove-species" type="button">x</button></td>
+                    </tr>
+                    <tr class="species-row">
+                        <td><input type="text" name="sequence" /></td>
+                        <td><input type="text" name="label" value="canis latrans"/></td>
+                        <td><span class="status"></span></td>
+                        <td><button class="remove-species" type="button">x</button></td>
+                    </tr>
+                    <tr class="species-row">
+                        <td><input type="text" name="sequence" /></td>
+                        <td><input type="text" name="label" value="castor canadensis"/></td>
+                        <td><span class="status"></span></td>
+                        <td><button class="remove-species" type="button">x</button></td>
+                    </tr>
+                    <tr class="species-row">
+                        <td><input type="text" name="sequence" /></td>
+                        <td><input type="text" name="label" value="alces alces"/></td>
+                        <td><span class="status"></span></td>
+                        <td><button class="remove-species" type="button">x</button></td>
+                    </tr>
+                    <tr class="species-row">
+                        <td><input type="text" name="sequence" /></td>
+                        <td><input type="text" name="label" value="rangifer tarandus"/></td>
+                        <td><span class="status"></span></td>
+                        <td><button class="remove-species" type="button">x</button></td>
+                    </tr>
+                    <tr class="species-row">
+                        <td><input type="text" name="sequence" /></td>
+                        <td><input type="text" name="label" value="odocoileus virginianus"/></td>
+                        <td><span class="status"></span></td>
+                        <td><button class="remove-species" type="button">x</button></td>
+                    </tr>
+                    <tr class="species-row">
+                        <td><input type="text" name="sequence" /></td>
+                        <td><input type="text" name="label" value="odocoileus hemionus"/></td>
+                        <td><span class="status"></span></td>
+                        <td><button class="remove-species" type="button">x</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+ -->
+        <div class="settings">
+            
+            <h3>Primer Lengths</h3>
+            <div class="primer_length">
+                <label>
+                    Opening <input name="primer_open" type="number" value="20"> base pairs
+                </label>
+                <br>
 
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-    <!--<script>window.jQuery || document.write('<script src="/scripts/vendor/jquery-1.9.1.min.js"><\/script>')</script>-->
-    <script src="/scripts/jquery-1.10.2.min.js"></script>
-    <script src="/scripts/main.js"></script>
+                <label>
+                    Closing <input name="primer_close" type="number" value="20"> base pairs
+                </label>
+                <br>
+                
+                <label>
+                    Opening Stress Length <input name="primer_open_stress_length" type="number" value="5"> base pairs
+                </label>
+                <br>
+                
+                <label>
+                    Opening Stress Metric <input name="primer_open_stress_metric" type="number" value="23"> %
+                </label>
+                <br>
+            </div>
+            
+            <h3>Amplicon Length</h3>
+            <div class="amplicon_length">
+                <label>
+                    Minimum <input name="amp_min" type="number" value="100"> base pairs
+                </label>
+                <br>
+
+                <label>
+                    Maximum <input name="amp_max" type="number" value="300"> base pairs
+                </label>
+                <br>
+                
+                <label>
+                    Difference Buffer <input name="amp_buffer" type="number" value="5"> base pairs
+                </label>
+                <br>
+            </div>
+            
+            <h3>Processing</h3>
+            <div class="processing">
+                <label>
+                    Verbose <input name="verbose" type="checkbox">
+                </label>
+                <br>
+
+                <label>
+                    Benchmark <input name="benchmark" type="checkbox">
+                </label>
+                <br>
+            </div>
+            
+            <h3>Results</h3>
+            <div class="results">
+                <label>
+                    Visualized <input name="visualized" type="checkbox" value="visualized">
+                </label>
+                <br>
+
+                <label>
+                    Format <input name="format" type="checkbox" value="format">
+                </label>
+                <br>
+            </div>
+
+        </div>
+        
+        <button id="run_test" type="button">Run test</button>
+    </div>
+
+    <div class="modal confirm-remove-species">
+        <p>Are you sure you want to remove this from the analysis?</p>
+        <button class="confirm-remove" type="button">Confirm</button>
+        <button class="cancel-remove" type="button" rel="modal:close">Cancel</button>
+    </div>
+</div>
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+<!--<script>window.jQuery || document.write('<script src="/scripts/vendor/jquery-1.9.1.min.js"><\/script>')</script>-->
+<script src="/scripts/libs/jquery-1.10.2.min.js"></script>
+<script src="/scripts/libs/underscore-1.5.2.min.js"></script>
+<script src="/scripts/libs/jquery.modal.min.js"></script>
+<script src="/scripts/load-dna.js"></script>
+<script src="/scripts/main.js"></script>
+<script src="/scripts/ui.js"></script>
 </body>
 </html>

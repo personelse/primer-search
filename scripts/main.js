@@ -19,12 +19,6 @@ var Main = (function() {
             
         },
         evaluateDNA: function(DNA) {
-            // remove whitespace
-            // var that = DNA.replace(/\s+/g, ' ');
-            
-            // capitalize all chars
-            // DNA.toUpperCase();
-            
             // test if empty
             if (DNA === '') {
                 return {status: 'empty', valid: false};

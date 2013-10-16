@@ -72,8 +72,11 @@ input[type=number] {
     text-align: right;
     padding: 3px 5px;
 }
+input:focus {
+    background: #fff;
+}
 
-
+/* starting from the top */
 body {
     width: 100%;
 }
@@ -90,7 +93,7 @@ body {
 
 
 
-
+/* modals, yuck */
 .modals {
     position: absolute;
     top: 0;
@@ -120,10 +123,7 @@ body {
 }
 
 
-
-
 /* helper classes */
-
 .ir {
     background-color: transparent;
     border: 0;

@@ -7,7 +7,7 @@
 .species-table {
     width: 100%;
     margin-bottom: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #999;
     border-radius: 3px;
 }
 
@@ -19,41 +19,30 @@
 .species-table .row.header {
     border-bottom: 1px solid #999;
 }
-.species-table .table-body .row {
-    /*background: #eee;*/
-}
-
-/* row state styles */
-.species-table .row.ready {
-    background: #dff2bf;
-}
-.species-table .row.ready .status {
-    /*color: #a6ca8a;*/
-}
-.species-table .row.invalid {
-    background: #ffbaba;
-}
-.species-table .row.duplicate {
-    background: #feefb3;
-}
 
 /* table cell styles */
 .species-table .row > * {
     display: inline-block;
     float: left;
-    height: 26px;
-    line-height: 26px;
+    height: 28px;
+    line-height: 28px;
     vertical-align: middle;
-    margin: 5px 0px 2px 1%;
+    margin: 4px 0px 1px 1%;
 }
 .species-table .row.header span {
+    margin: 2px 0 0 1%;
     padding: 3px 5px;
 }
 .species-table .row input {
-    border: 1px solid #999;
+    /*border: 1px solid #999;*/
+    /*background: #eee;*/
     border-radius: 3px;
     vertical-align: middle;
-    padding: 2px 5px;
+    padding: 2px 7px;
+    text-overflow: ellipsis;
+}
+.species-table .row input:focus {
+    background: #fff;
 }
 
 /* column sizes */
@@ -68,6 +57,9 @@
 }
 .species-table .remove-species {
     width: 8%;
+    max-width: 32px;
+    margin-right: 1%;
+    float: right;
 }
 
 /* table styles */
@@ -75,13 +67,59 @@
     font-family: Consolas, monospace;
 }
 .species-table input.name {
-    padding: 5px;
-    font-size: 12px;
+    padding: 5px 7px;
     font-size: 0.8em;
     font-style: italic;
     color: #666;
 }
-.species-table .table-body .status {
-    font-size: 12px;
+.species-table .species-list .status {
+    /*padding: 3px 5px;*/
+    /*padding: 5px;*/
+    padding: 0px 5px;
+    /*border: 1px solid #999;*/
+    border-radius: 3px;
     font-size: 0.8em;
+}
+.species-table .species-list .remove-species {
+    line-height: 1;
+}
+
+/* row state colors */
+.species-table .row.ready {
+    /*background: #dff2bf;*/
+}
+.species-table .row.ready .status {
+    /*color: #a6ca8a;*/
+}
+.species-table .row.invalid {
+    /*background: #ffbaba;*/
+}
+.species-table .row.duplicate {
+    /*background: #feefb3;*/
+}
+
+/* column state colors */
+.species-table .species-list .row.ready .status {
+    background: #dff2bf;
+    color: #4F8A10;
+    border-color: #4f8a10;
+    border: none;
+}
+.species-table .species-list .row.invalid .status {
+    background: #ffbaba;
+    color: #D8000C;
+    border-color: #D8000C;
+    border: none;
+}
+.species-table .species-list .row.duplicate .status {
+    background: #feefb3;
+    color: #9F6000;
+    border-color: #9F6000;
+    border: none;
+}
+.species-table .species-list .row:hover {
+    background: #eee;
+}
+#add_species {
+    margin: 4px 1% 6px;
 }

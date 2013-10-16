@@ -105,6 +105,7 @@ var UI = (function() {
                         if($('.species-list .row').size() < speciesMax) {
                             $('#add_species').slideDown();
                         }
+                        Main.checkForDuplicates();
                     });
                     $.modal.close();
                 });

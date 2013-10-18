@@ -34,6 +34,24 @@ var UI = (function() {
             console.log('Settings:', settings);
             return settings;
         },
+        updateTableButtons: function() {
+            var rowCount = $('.species-list .row').size();
+            
+            // add
+            if(rowCount > speciesMin) {
+                $('.species-list').addClass('removable');
+            }
+            if(rowCount === speciesMax) {
+                $('#add_species').slideUp(250);
+            }
+            // remove
+            if(rowCount === speciesMin) {
+                $('.species-list').removeClass('removable');
+            }
+            if(rowCount < speciesMax) {
+                $('#add_species').slideDown(250);
+            }
+        },
         updateRow: function(row, status, message) {
             console.log('Row Update:', status.toUpperCase());
             $(row).removeClass('ready empty invalid duplicate')
@@ -78,18 +96,12 @@ var UI = (function() {
                 newRow.hide();
                 $('.species-list').append(newRow);
                 newRow.slideDown(250);
-                
-                if($('.species-list .row').size() > speciesMin) {
-                    $('.species-list').addClass('removable');
-                }
-                if($('.species-list .row').size() === speciesMax) {
-                    $('#add_species').slideUp(250);
-                }
+                UI.updateTableButtons();
             });
 
             $('.species-list').on('click', '.remove-species', function() {
                 var currentRow = $(this).parent();
-                console.log(currentRow);
+                // console.log(currentRow);
                 
                 $('.confirm-remove-species').modal({
                     clickClose: false,
@@ -99,12 +111,7 @@ var UI = (function() {
                 $('.confirm-remove').on('click', function() {
                     $(currentRow).hide(function() {
                         $(this).remove();
-                        if($('.species-list .row').size() === speciesMin) {
-                            $('.species-list').removeClass('removable');
-                        }
-                        if($('.species-list .row').size() < speciesMax) {
-                            $('#add_species').slideDown();
-                        }
+                        UI.updateTableButtons();
                         Main.checkForDuplicates();
                     });
                     $.modal.close();
@@ -125,6 +132,8 @@ var UI = (function() {
             $('.species-list .row').each(function() {
                 UI.updateSpeciesStatus(this);
             });
+            
+            UI.updateTableButtons();
         }
     }
 }());

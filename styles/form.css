@@ -81,7 +81,11 @@
     font-size: 0.8em;
 }
 .species-table .species-list .remove-species {
+    display: none;
     line-height: 1;
+}
+.species-table .species-list.removable .remove-species {
+    display: inline-block;
 }
 
 /* row state colors */

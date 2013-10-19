@@ -1,22 +1,66 @@
 var Main = (function() {
     
-    var seqs, settings,
-        getDNA, getSettings;
+    var getDNA, getSettings, collectFeasibleSets;
         
     getDNA = function() {
-        seqs = UI.getDNA();
+        var seqs = UI.getDNA();
         console.log(seqs.length + ' species');
+        return seqs;
     };
     
     getSettings = function() {
-        settings = UI.getSettings();
+        var settings = UI.getSettings();
+        return settings;
+    };
+    
+    collectFeasibleSets = function(DNA, settings) {
+        if (DNA.length === 0) {
+            console.log('no sequences collected!');
+            return false;
+        }
+        
+        var results = [];
+        // traverse species list
+        for (t=0; t < DNA.length; t++) {
+            var seq = DNA[t];
+            // console.log('Species ' + t);
+            
+            // traverse mtdna length
+            // console.log(seq.length - settings.amp_min);
+            for (i=0; i < seq.length - settings.amp_min; i++) {
+                if (i===0) results[t] = [];
+                
+                // get distance to end of DNA to prevent amplicon max length from overflowing over the end of the DNA sequence
+                var distToEnd = seq.length - i;
+                var end_buffer = settings.amp_max > distToEnd ? distToEnd : settings.amp_max;
+                
+                // span length of amplicon, min to max
+                for (l=settings.amp_min; l <= end_buffer; l++) {
+                    if (l===settings.amp_min) results[t][i] = [];
+                    
+                    var amplicon = seq.slice(i, i + l),
+                        forward = amplicon.slice(0, settings.primer_forward),
+                        reverse = amplicon.slice(0, -settings.primer_reverse);
+                        
+                    results[t][i][l] = {
+                        amplicon: amplicon,
+                        start: forward,
+                        end: reverse
+                    };
+                }
+            }
+        }
+        
+        console.log(results);
+        return results;
     };
     
     return {
         run: function() {
-            getDNA();
-            getSettings();
-            
+            var DNA = getDNA(),
+                settings = getSettings();
+
+            // collectFeasibleSets(DNA, settings);
         },
         evaluateDNA: function(DNA) {
             // test if empty

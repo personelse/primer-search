@@ -3,7 +3,8 @@ var UI = (function() {
     var speciesCount = 0,
         speciesMin = 2,
         speciesMax = 10,
-        asdfasdf;
+        updateStatus,
+        runStatus = $('.run-status');
     
     
     
@@ -53,7 +54,7 @@ var UI = (function() {
             }
         },
         updateRow: function(row, status, message) {
-            console.log('Row Update:', status.toUpperCase());
+            // console.log('Row Update:', status.toUpperCase());
             $(row).removeClass('ready empty invalid duplicate')
                 .addClass(status)
                 .find('.status')
@@ -74,6 +75,9 @@ var UI = (function() {
                     UI.updateRow(row, '', '');
                     break;
             }
+        },
+        updateStatus: function(str) {
+            runStatus.append('<li>' + str + '...</li>');
         },
         displayError: function(exception) {
             console.log(exception);

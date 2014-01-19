@@ -1,6 +1,34 @@
 var Metrics = (function() {
     
-    var _permuteByRadix;
+    var _permuteByRadix,
+        _collectInstanceCounts,
+        DNA = [],
+        resultsBySpecies = [],
+        // resultsByPermutation = [],
+        resultsByPermutationObj = {};
+    
+    _collectInstanceCounts = function(str) {
+        var regex = new RegExp(str, 'g'),
+            instances = [],
+            distribution = [];
+            
+        for(var d=0; d < DNA.length; d++) {
+            instances = DNA[d].match(regex);
+            if(!instances) {
+                instances = [];
+            }
+            resultsBySpecies[d].push(instances.length);
+            distribution[d] = instances.length;
+        }
+        
+        var byPermutation = {
+            'string': str,
+            'distribution': distribution
+        };
+        
+        // resultsByPermutation.push(byPermutation);
+        resultsByPermutationObj[str] = distribution;
+    };
     
     _permuteByRadix = function(size) {
         var bps = ['A','G','T','C'],
@@ -15,17 +43,27 @@ var Metrics = (function() {
                 .replace(/2/g, 'T')
                 .replace(/3/g, 'C');
                 
-            while(temp.length < size) {
+            while(str.length < size) {
                 str = 'A' + str;
             }
             
-            console.log(temp);
+            _collectInstanceCounts(str);
+            // console.log(str);
         }
         
+        return {
+            resultsBySpecies: resultsBySpecies,
+            // resultsByPermutation: resultsByPermutation,
+            resultsByPermutationObj: resultsByPermutationObj,
+        };
     };
     
     return {
-        permuteDNA: function(size) {
+        permuteDNA: function(DNAin, size) {
+            DNA = DNAin;
+            for(var d=0; d < DNAin.length; d++) {
+                resultsBySpecies.push([]);
+            }
             return _permuteByRadix(size);
         }
     };

@@ -57,6 +57,9 @@ var Main = (function() {
             var DNA = getDNA(),
                 settings = getSettings();
             
+            var metr = Metrics.permuteDNA(DNA, 5);
+            console.log(metr);
+            
             // primerMetrics(DNA, settings);
             // Metrics.permuteDNA(5);
             

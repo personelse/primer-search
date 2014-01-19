@@ -1,3 +1,4 @@
+// for analysing and comparing DNA strings
 var Metrics = (function() {
     
     var _permuteByRadix,

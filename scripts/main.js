@@ -1,37 +1,3 @@
-// indexOf a la Trevor
-var fallback = function(method, fallback) {
-    // Detect whether the native method is a function, storing the fallback only if necessary
-    var fn = typeof method === 'function' ?
-        method :
-        fallback;
-
-    // Return a function calling the stored function above
-    return function() {
-        return Function.call.apply(fn, arguments);
-    };
-},
-
-// Create a fallback function for Array#indexOf
-indexOf = fallback([].indexOf, function(needle) {
-    var index = -1,
-        length,
-        i;
-
-    if(needle instanceof Array) {
-        length = this.length;
-
-        for(i = 0; i < length; i++) {
-            if(this[i] === needle) {
-                index = i;
-                break;
-            }
-        }
-    }
-
-    return index;
-});
-
-// my stuff
 var Main = (function() {
     
     var getDNA,
@@ -60,11 +26,7 @@ var Main = (function() {
             var metr = Metrics.permuteDNA(DNA, 5);
             console.log(metr);
             
-            // primerMetrics(DNA, settings);
-            // Metrics.permuteDNA(5);
-            
-            UI.updateStatus('All done');
-            // collectFeasibleSets(settings , DNA);
+            // UI.updateStatus('All done');
         },
         evaluateDNA: function(DNA) {
             // test if empty
@@ -106,22 +68,4 @@ var Main = (function() {
             }
         }
     };
-    
 }());
-
-
-/*
-
-gather DNA
-gather settings
-
-metrics
-    per-species primer indices
-    per-species primer count
-    all-species primer indices
-    all-species primer count
-    
-analysis
-    collect per-species primers
-*/
-

@@ -10,7 +10,7 @@ var Metrics = (function() {
         indicesByPermutation = {};
     
     _collectInstanceCounts = function(str) {
-        var regex = new RegExp(str, 'g'),
+        var regex = new RegExp('(?=' + str + ')', 'g'),
             instances = [],
             distribution = [];
             

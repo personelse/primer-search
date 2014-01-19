@@ -88,9 +88,22 @@ body {
     
 }
 
-
-
-
+/* first-pass histogram results */
+.results,
+.first-pass,
+.species-histogram {
+    width: 1080px;
+}
+.species-histogram {
+    position: relative;
+    height: 100px;
+}
+.species-histogram div {
+    position: absolute;
+    bottom: 0;
+    width: 1px;
+    background: #339;
+}
 
 
 /* modals, yuck */

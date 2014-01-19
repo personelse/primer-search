@@ -6,8 +6,6 @@ var UI = (function() {
         updateStatus,
         runStatus = $('.run-status');
     
-    
-    
     return {
         readyToRun: function() {
             var state = {};
@@ -34,6 +32,29 @@ var UI = (function() {
             });
             console.log('Settings:', settings);
             return settings;
+        },
+        displayFirstPass: function(results) {
+            var species = results.countsBySpecies,
+                counts,
+                $tree = $('<div>', {class: 'first-pass'}),
+                $list,
+                $bar;
+            
+            // iterate through species
+            for(var s=0; s < species.length; s++) {
+                counts = species[s];
+                $list = $('<div>', {class: 'species-histogram'});
+                
+                // iterate through counts
+                for(var c=0; c < counts.length; c++) {
+                    $bar = $('<div>', {height: counts[c] + 'px'})
+                        .css({left: c});
+                    $list.append($bar);
+                }
+                $tree.append($list);
+            }
+            $('.results').append($tree);
+            
         },
         updateTableButtons: function() {
             var rowCount = $('.species-list .row').size();
@@ -139,7 +160,7 @@ var UI = (function() {
             
             UI.updateTableButtons();
         }
-    }
+    };
 }());
 
 $(function() {

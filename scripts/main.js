@@ -26,6 +26,7 @@ var Main = (function() {
             var metr = Metrics.permuteDNA(DNA, 5);
             console.log(metr);
             
+            UI.displayFirstPass(metr);
             // UI.updateStatus('All done');
         },
         evaluateDNA: function(DNA) {

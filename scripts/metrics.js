@@ -2,32 +2,51 @@ var Metrics = (function() {
     
     var _permuteByRadix,
         _collectInstanceCounts,
+        _collectInstanceIndices,
         DNA = [],
-        resultsBySpecies = [],
-        // resultsByPermutation = [],
-        resultsByPermutationObj = {};
+        countsBySpecies = [],
+        countsByPermutation = {},
+        indicesBySpecies = [],
+        indicesByPermutation = {};
     
     _collectInstanceCounts = function(str) {
         var regex = new RegExp(str, 'g'),
             instances = [],
             distribution = [];
             
+        // iterate through species
         for(var d=0; d < DNA.length; d++) {
             instances = DNA[d].match(regex);
             if(!instances) {
                 instances = [];
             }
-            resultsBySpecies[d].push(instances.length);
+            countsBySpecies[d].push(instances.length);
             distribution[d] = instances.length;
         }
         
-        var byPermutation = {
-            'string': str,
-            'distribution': distribution
-        };
+        countsByPermutation[str] = distribution;
+    };
+    
+    _collectInstanceIndices = function(str) {
+        var matches = [],
+            distribution = [];
+            
+        // iterate through species
+        for(var d=0; d < DNA.length; d++) {
+            matches = [];
+            
+            // traverse DNA for matches
+            for(var b=0; b < DNA[d].length - str.length + 1; b++) {
+                if(DNA[d].slice(b, b+str.length) === str) {
+                    matches.push(b);
+                }
+            }
+            
+            indicesBySpecies[d].push(matches);
+            distribution[d] = matches;
+        }
         
-        // resultsByPermutation.push(byPermutation);
-        resultsByPermutationObj[str] = distribution;
+        indicesByPermutation[str] = distribution;
     };
     
     _permuteByRadix = function(size) {
@@ -48,13 +67,15 @@ var Metrics = (function() {
             }
             
             _collectInstanceCounts(str);
+            _collectInstanceIndices(str);
             // console.log(str);
         }
         
         return {
-            resultsBySpecies: resultsBySpecies,
-            // resultsByPermutation: resultsByPermutation,
-            resultsByPermutationObj: resultsByPermutationObj,
+            countsBySpecies: countsBySpecies,
+            countsByPermutation: countsByPermutation,
+            indicesBySpecies: indicesBySpecies,
+            indicesByPermutation: indicesByPermutation,
         };
     };
     
@@ -62,7 +83,8 @@ var Metrics = (function() {
         permuteDNA: function(DNAin, size) {
             DNA = DNAin;
             for(var d=0; d < DNAin.length; d++) {
-                resultsBySpecies.push([]);
+                countsBySpecies.push([]);
+                indicesBySpecies.push([]);
             }
             return _permuteByRadix(size);
         }

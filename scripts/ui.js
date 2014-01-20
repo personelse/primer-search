@@ -36,18 +36,18 @@ var UI = (function() {
         displayFirstPass: function(results) {
             var species = results.countsBySpecies,
                 counts,
-                $tree = $('<div>', {class: 'first-pass'}),
-                $list,
-                $bar;
+                $tree = $('<div>', {class: 'first-pass'});
             
             // iterate through species
             for(var s=0; s < species.length; s++) {
                 counts = species[s];
-                $list = $('<div>', {class: 'species-histogram'});
+                var $list = $('<div>', {class: 'species-histogram'}),
+                title = '';
                 
                 // iterate through counts
                 for(var c=0; c < counts.length; c++) {
-                    $bar = $('<div>', {height: counts[c] + 'px'})
+                    titlee = counts[c]['size'] + ' - ' +counts[c]['perm'];
+                    var $bar = $('<div>', {height: counts[c]['size'] + 'px', title: titlee})
                         .css({left: c});
                     $list.append($bar);
                 }

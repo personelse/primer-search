@@ -102,7 +102,10 @@ body {
     position: absolute;
     bottom: 0;
     width: 1px;
-    background: #339;
+    background: #888;
+}
+.species-histogram div:hover {
+    background: #f00;
 }
 
 

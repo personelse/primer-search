@@ -21,7 +21,7 @@ var Metrics = (function() {
             if(!instances) {
                 instances = [];
             }
-            countsBySpecies[d].push(instances.length);
+            countsBySpecies[d].push({size: instances.length, perm: str});
             distribution[d] = instances.length;
         }
         
@@ -68,15 +68,14 @@ var Metrics = (function() {
             }
             
             _collectInstanceCounts(str);
-            _collectInstanceIndices(str);
-            // console.log(str);
+            // _collectInstanceIndices(str);
         }
         
         return {
             countsBySpecies: countsBySpecies,
             countsByPermutation: countsByPermutation,
-            indicesBySpecies: indicesBySpecies,
-            indicesByPermutation: indicesByPermutation,
+            // indicesBySpecies: indicesBySpecies,
+            // indicesByPermutation: indicesByPermutation,
         };
     };
     

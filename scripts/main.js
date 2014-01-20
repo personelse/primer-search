@@ -27,7 +27,6 @@ var Main = (function() {
             console.log(metr);
             
             UI.displayFirstPass(metr);
-            // UI.updateStatus('All done');
         },
         evaluateDNA: function(DNA) {
             // test if empty
